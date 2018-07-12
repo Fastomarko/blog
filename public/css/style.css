@@ -1,0 +1,21 @@
+#my_nav 
+{
+	background: grey;
+}
+
+#my_nav_text 
+{
+	color: black;
+}
+
+#my_nav_col 
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#middlecol {
+	
+	padding: 10px 10px 10px 10px;
+}
