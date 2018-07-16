@@ -24,6 +24,7 @@
 
                     <hr>
                     <!--Добавление комментариев-->
+                    @if (Auth::check())
                     <form action="insert_comment" method="get">
                         {{ csrf_field() }}
                         <div class="container">
@@ -33,6 +34,7 @@
                             <input type="submit" name="submit" class="btn btn-dark" value="Add a comment:"/>
                         </div>
                     </form>
+                    @endif
                     <!--Тут комменты и т.д.-->
                     <div class="row">
                         <div class="col">

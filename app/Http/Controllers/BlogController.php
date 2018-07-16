@@ -68,7 +68,7 @@ class BlogController extends Controller
         $data = array('id_article'=>$id_article, 'id_user'=>$id_user, 'comment_text'=>$comment_text, 'created_at'=>date('Y-m-d H:i:s'), 'updated_at'=>date('Y-m-d H:i:s'));
         DB::table('comments')->insert($data);
 
-        return redirect('articles/'.$id_article);
+        //return redirect('articles/'.$id_article);
     }
 
     public function category1()
