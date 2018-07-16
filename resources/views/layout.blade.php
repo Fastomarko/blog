@@ -24,10 +24,10 @@
                             CATEGORIES
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
-                            <a class="dropdown-item" href="#">LIFE STYLE</a>
-                            <a class="dropdown-item" href="#">NATURE</a>
-                            <a class="dropdown-item" href="#">SCIENCE AND TECHNOLOGY</a>
-                            <a class="dropdown-item" href="#">SPORTS</a>
+                            <a class="dropdown-item" href="{{ url('category/1') }}">LIFE STYLE</a>
+                            <a class="dropdown-item" href="{{ url('/category/2') }}">NATURE</a>
+                            <a class="dropdown-item" href="{{ url('/category/3') }}">SCIENCE AND TECHNOLOGY</a>
+                            <a class="dropdown-item" href="{{ url('/category/4') }}">SPORTS</a>
                         </div>
                     </div>
 

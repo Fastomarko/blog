@@ -11,23 +11,54 @@
             <div class="row">
                 <div class="col-7">
 
-                    @foreach($data as $d)
-
                     <div class="row">
                         <div id="middlecol" class="col-4">
                             <img src="..." class="rounded float-left" alt="Picture">
                         </div>
                         <div id="middlecol" class="col-8">
-                            <a href="{{ url("article/".$d->id) }}"><h3>{{$d->article_name}}</h3></a>
-                            <a href="#">{{$d->category}}</a>
-                            <p>{{str_limit($d->article_body, 200)}}</p>
-                            <a class="btn btn-secondary" href="{{ url("article/".$d->id) }}" role="button">Learn more</a>
+                            <a href="#"><h3>{{$article->article_name}}</h3></a>
+                            <a href="#">{{$article->id_category}}</a>
+                            <p>{{$article->article_body}}</p>
                         </div>
                     </div>
 
                     <hr>
-                    @endforeach
-                    {{ $data->links() }}
+                    <!--Добавление комментариев-->
+                    <form action="insert_comment" method="get">
+                        {{ csrf_field() }}
+                        <div class="container">
+                            <p>Add a comment:</p>
+                            <textarea class="form-control" name="comment_text" rows="3" required></textarea>
+                            <br>
+                            <input type="submit" name="submit" class="btn btn-dark" value="Add a comment:"/>
+                        </div>
+                    </form>
+                    <!--Тут комменты и т.д.-->
+                    <div class="row">
+                        <div class="col">
+                            <br>
+                            <p>Комментарии:</p>
+                            <!--этот блок под ajax-->
+                            @foreach($comments as $c)
+                            <div class="container">
+                                <hr>
+                                <div class="row">
+                                    <!--ебани влево-->
+                                    <div class="col">
+                                        <p><strong>{{$c->id_user}}</strong></p>
+                                    </div>
+                                    <!--ебани вправо-->
+                                    <div class="col">
+                                        <p>{{$c->updated_at}}</p>
+                                    </div>
+                                </div>
+                                <p>{{$c->comment_text}}</p>
+                                <hr>
+                            </div>
+                            @endforeach
+                            <!--этот блок под ajax-->
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-4 offset-1">
@@ -36,7 +67,6 @@
                         <hr>
                         <ul class="list-group list-group-flush">
                             @foreach($likes as $l)
-
                             <li class="list-group-item">
                                 <a id="my_nav_text" href="#">{{$l->article_name}}</a>
                             </li>
