@@ -10,16 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('article/insert_comment', 'BlogController@insert_comment');
+Route::post('article/insert_comment', 'BlogController@insert_comment');
+Route::post('article/insert_like', 'BlogController@insert_like');
+Route::post('article/insert_article', 'BlogController@insert_article');
 Route::get('/', 'BlogController@index');
+Route::get('/article/insert', 'BlogController@article_insert_page');
 
 Route::get('article/{article}', 'BlogController@article');
-
-
-Route::get('/category/1', 'BlogController@category1');
-Route::get('/category/2', 'BlogController@category2');
-Route::get('/category/3', 'BlogController@category3');
-Route::get('/category/4', 'BlogController@category4');
 
 Auth::routes();
 

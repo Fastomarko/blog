@@ -19,7 +19,7 @@
                         </div>
                         <div id="middlecol" class="col-8">
                             <a href="{{ url("article/".$d->id) }}"><h3>{{$d->article_name}}</h3></a>
-                            <a href="#">{{$d->category}}</a>
+                            <a href="#">{{$d->category->category}}</a>
                             <p>{{str_limit($d->article_body, 200)}}</p>
                             <a class="btn btn-secondary" href="{{ url("article/".$d->id) }}" role="button">Learn more</a>
                         </div>
@@ -35,10 +35,10 @@
                         <h4>Best articles:</h4>
                         <hr>
                         <ul class="list-group list-group-flush">
-                            @foreach($likes as $l)
+                            @foreach($bestArticles as $b)
 
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">{{$l->article_name}}</a>
+                                <a id="my_nav_text" href="{{ url("article/".$b->id) }}">{{$b->article_name}}</a>
                             </li>
                             @endforeach
                         </ul>

@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class like extends Model
 {
     //
 
     public function article()
     {
-        return $this->hasMany(article::class);
+        return $this->belongsTo(article::class);
     }
 }

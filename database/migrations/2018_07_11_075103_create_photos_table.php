@@ -15,10 +15,11 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('id_article');
+			$table->integer('article_id')->unsigned();;
 			$table->string('photo_link');
 			$table->integer('photo_order');
             $table->timestamps();
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
         });
     }
 

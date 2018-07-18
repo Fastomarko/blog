@@ -17,15 +17,25 @@
                         </div>
                         <div id="middlecol" class="col-8">
                             <a href="#"><h3>{{$article->article_name}}</h3></a>
-                            <a href="#">{{$article->id_category}}</a>
+                            <a href="#">{{$article->category_id}}</a>
                             <p>{{$article->article_body}}</p>
                         </div>
                     </div>
 
                     <hr>
+                    <form action="insert_like" method="post">
+                        {{ csrf_field() }}
+                        <div class="container">
+                            <button type="submit" name="submit" class="btn btn-primary">
+                                Likes <span class="badge badge-light">{{$like}}</span>
+                            </button>
+                        </div>
+                        <hr>
+                        </form>
+
                     <!--Добавление комментариев-->
                     @if (Auth::check())
-                    <form action="insert_comment" method="get">
+                    <form action="insert_comment" method="post">
                         {{ csrf_field() }}
                         <div class="container">
                             <p>Add a comment:</p>
@@ -47,7 +57,7 @@
                                 <div class="row">
                                     <!--ебани влево-->
                                     <div class="col">
-                                        <p><strong>{{$c->id_user}}</strong></p>
+                                        <p><strong>{{$c->user_id}}</strong></p>
                                     </div>
                                     <!--ебани вправо-->
                                     <div class="col">
@@ -68,9 +78,9 @@
                         <h4>Best articles:</h4>
                         <hr>
                         <ul class="list-group list-group-flush">
-                            @foreach($likes as $l)
+                            @foreach($bestArticles as $b)
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">{{$l->article_name}}</a>
+                                <a id="my_nav_text" href="{{ url("article/".$b->id) }}">{{$b->article_name}}</a>
                             </li>
                             @endforeach
                         </ul>

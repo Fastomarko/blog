@@ -24,10 +24,10 @@
                             CATEGORIES
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
-                            <a class="dropdown-item" href="{{ url('category/1') }}">LIFE STYLE</a>
-                            <a class="dropdown-item" href="{{ url('/category/2') }}">NATURE</a>
-                            <a class="dropdown-item" href="{{ url('/category/3') }}">SCIENCE AND TECHNOLOGY</a>
-                            <a class="dropdown-item" href="{{ url('/category/4') }}">SPORTS</a>
+                            <a class="dropdown-item" href="#">LIFE STYLE</a>
+                            <a class="dropdown-item" href="#">NATURE</a>
+                            <a class="dropdown-item" href="#">SCIENCE AND TECHNOLOGY</a>
+                            <a class="dropdown-item" href="#">SPORTS</a>
                         </div>
                     </div>
 
@@ -37,10 +37,13 @@
                         <a id="my_nav_text" href="{{ route('login') }}">LOGIN</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ route('register') }}">REGISTER</a>
-                    </div>
+                            <a id="my_nav_text" href="{{ route('register') }}">REGISTER</a>
+                        </div>
                     @else
-                        <div id="my_nav_col" class="col offset-7">
+                        <div id="my_nav_col" class="col offset-6">
+                            <a id="my_nav_text" href="{{ URL('article/insert') }}">INSERT ARTICLE</a>
+                        </div>
+                        <div id="my_nav_col" class="col">
                             <a id="my_nav_text" class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
