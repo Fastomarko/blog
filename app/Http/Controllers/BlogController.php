@@ -14,12 +14,9 @@ class BlogController extends Controller
 {
     public function index()
     {
-        //$data = DB::table('articles')->join('categories', 'category_id', '=', 'categories.id')->paginate(5);
         $data=article::with('category')->paginate(5);
-        //потом поинтересуйся
-        $category=category::all();
         $bestArticles=$this->best_articles();
-        return view('blogs.index', compact('data', 'bestArticles', 'category'));
+        return view('blogs.index', compact('data', 'bestArticles'));
     }
 
     public function article_insert_page()
@@ -30,24 +27,12 @@ class BlogController extends Controller
 
     public function article($id)
     {
-        $article = Article::find($id);
+        $article = Article::with('category')->with('user')->where('id', $id)->get();
+        $comment = Comment::with('user')->where('article_id', $id)->get();
         $bestArticles = $this->best_articles();
 
-        /*получение кол-ва лайков статьи
-        $article_likes=DB::table('likes')->get();
-        $like=0;
-        foreach ($article_likes as $al)
-        {
-            if(($al->article_id)==$id)
-            {
-                $like++;
-            }
-        }
-        */
         $like=like::where('article_id', $id)->count();
-        //
-        $comments=comment::where('article_id', $id)->get();
-        return view('blogs.article', compact('article', 'bestArticles', 'like', 'comments'));
+        return view('blogs.article', compact('article', 'bestArticles', 'like', 'comment'));
     }
 
     public function insert_comment(Request $data)
@@ -117,5 +102,30 @@ class BlogController extends Controller
         }
         $likes = DB::table('articles')->wherein('id', $q)->get();
         return $likes;
+    }
+
+    public function update_article(Request $data, $id)
+    {
+        $category_id = $data->category;
+        $article_name = $data->article_name;
+        $article_body = $data->article_body;
+
+        $data = array('category_id'=>$category_id, 'article_name'=>$article_name, 'article_body'=>$article_body, 'updated_at'=>date('Y-m-d H:i:s'));
+        DB::table('articles')->where('id', $id)->update($data);
+        return redirect('article/'.$id);
+    }
+
+    public function delete_article($id)
+    {
+        DB::table('articles')->where('id',$id)->delete();
+        return redirect('home');
+    }
+
+    public function article_update_page($id)
+    {
+        $article = Article::with('category')->where('id', $id)->get();
+        //dd($article);
+        $category = category::all();
+        return view('blogs.update_article', compact('category', 'article'));
     }
 }

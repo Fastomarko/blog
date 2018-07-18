@@ -16,22 +16,34 @@
                             <img src="..." class="rounded float-left" alt="Picture">
                         </div>
                         <div id="middlecol" class="col-8">
-                            <a href="#"><h3>{{$article->article_name}}</h3></a>
-                            <a href="#">{{$article->category_id}}</a>
-                            <p>{{$article->article_body}}</p>
+                            <a href="#"><h3>{{$article[0]->article_name}}</h3></a>
+                            <a href="#">{{$article[0]->category->category}}</a>
+                            <p>{{$article[0]->article_body}}</p>
                         </div>
                     </div>
 
                     <hr>
-                    <form action="insert_like" method="post">
-                        {{ csrf_field() }}
-                        <div class="container">
-                            <button type="submit" name="submit" class="btn btn-primary">
-                                Likes <span class="badge badge-light">{{$like}}</span>
-                            </button>
+                    <div class="row">
+                        <div class="col">
+                            <form action="insert_like" method="post">
+                                {{ csrf_field() }}
+                                <div class="container">
+                                    <button type="submit" name="submit" class="btn btn-primary">
+                                        Likes <span class="badge badge-light">{{$like}}</span>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <hr>
-                        </form>
+
+                        <div class="col">
+                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/update") }}" role="button">Update</a>
+                        </div>
+
+                        <div class="col">
+                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/delete") }}" role="button">Delete</a>
+                        </div>
+                    </div>
+                    <hr>
 
                     <!--Добавление комментариев-->
                     @if (Auth::check())
@@ -51,13 +63,13 @@
                             <br>
                             <p>Комментарии:</p>
                             <!--этот блок под ajax-->
-                            @foreach($comments as $c)
+                            @foreach($comment as $c)
                             <div class="container">
                                 <hr>
                                 <div class="row">
                                     <!--ебани влево-->
                                     <div class="col">
-                                        <p><strong>{{$c->user_id}}</strong></p>
+                                        <p><strong>{{$c->user->name}}</strong></p>
                                     </div>
                                     <!--ебани вправо-->
                                     <div class="col">
