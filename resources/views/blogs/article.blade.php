@@ -36,11 +36,11 @@
                         </div>
                         @if ((auth()->user()->id)==$article[0]->user_id)
                         <div class="col">
-                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/update") }}" role="button">Update</a>
+                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/update") }}" role="button">Редактировать</a>
                         </div>
 
                         <div class="col">
-                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/delete") }}" role="button">Delete</a>
+                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/delete") }}" role="button">Удалить</a>
                         </div>
                         @endif
                     </div>
@@ -51,10 +51,10 @@
                     <form action="insert_comment" method="post">
                         {{ csrf_field() }}
                         <div class="container">
-                            <p>Add a comment:</p>
+                            <p>Добавить комментарий:</p>
                             <textarea class="form-control" name="comment_text" rows="3" required></textarea>
                             <br>
-                            <input type="submit" name="submit" class="btn btn-dark" value="Add a comment:"/>
+                            <input type="submit" name="submit" class="btn btn-dark" value="Добавить комментарий"/>
                         </div>
                     </form>
                     @endif
@@ -68,11 +68,11 @@
                             <div class="container">
                                 <hr>
                                 <div class="row">
-                                    <!--ебани влево-->
+
                                     <div class="col">
                                         <p><strong>{{$c->user->name}}</strong></p>
                                     </div>
-                                    <!--ебани вправо-->
+
                                     <div class="col">
                                         <p>{{$c->updated_at}}</p>
                                     </div>
@@ -88,7 +88,7 @@
 
                 <div class="col-4 offset-1">
                     <div class="jumbotron">
-                        <h4>Best articles:</h4>
+                        <h4>Популярные статьи:</h4>
                         <hr>
                         <ul class="list-group list-group-flush">
                             @foreach($bestArticles as $b)
@@ -131,10 +131,10 @@
             <div class="container">
                 <div class="row">
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/about_us') }}">ABOUT US</a>
+                        <a id="my_nav_text" href="{{ url('/about_us') }}">О НАС</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">TERMS OF USE</a>
+                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
                     </div>
                 </div>
             </div>

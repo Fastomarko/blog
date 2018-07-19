@@ -21,27 +21,27 @@
 
                     <div id="my_nav_col" class="col">
                         <a id="my_nav_text" class="dropdown-toggle" href="#" id="navbarDropdownCategories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            CATEGORIES
+                            КАТЕГОРИИ
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
-                            <a class="dropdown-item" href="#">LIFE STYLE</a>
-                            <a class="dropdown-item" href="#">NATURE</a>
-                            <a class="dropdown-item" href="#">SCIENCE AND TECHNOLOGY</a>
-                            <a class="dropdown-item" href="#">SPORTS</a>
+                            <a class="dropdown-item" href="#">СТИЛЬ ЖИЗНИ</a>
+                            <a class="dropdown-item" href="#">ПРИРОДА</a>
+                            <a class="dropdown-item" href="#">НАУКА И ТЕХНОЛОГИИ</a>
+                            <a class="dropdown-item" href="#">СПОРТ</a>
                         </div>
                     </div>
 
 
                     @guest
                     <div id="my_nav_col" class="col offset-6">
-                        <a id="my_nav_text" href="{{ route('login') }}">LOGIN</a>
+                        <a id="my_nav_text" href="{{ route('login') }}">ВХОД</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                            <a id="my_nav_text" href="{{ route('register') }}">REGISTER</a>
+                            <a id="my_nav_text" href="{{ route('register') }}">РЕГИСТРАЦИЯ</a>
                         </div>
                     @else
-                        <div id="my_nav_col" class="col offset-6">
-                            <a id="my_nav_text" href="{{ URL('article/insert') }}">INSERT ARTICLE</a>
+                        <div id="my_nav_col" class="col offset-4">
+                            <a id="my_nav_text" href="{{ URL('article/insert') }}">ДОБАВИТЬ СТАТЬЮ</a>
                         </div>
                         <div id="my_nav_col" class="col">
                             <a id="my_nav_text" class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -52,7 +52,7 @@
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Выход') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

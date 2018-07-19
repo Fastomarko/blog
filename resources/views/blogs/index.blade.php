@@ -21,7 +21,7 @@
                             <a href="{{ url("article/".$d->id) }}"><h3>{{$d->article_name}}</h3></a>
                             <a href="#">{{$d->category->category}}</a>
                             <p>{{str_limit($d->article_body, 200)}}</p>
-                            <a class="btn btn-secondary" href="{{ url("article/".$d->id) }}" role="button">Learn more</a>
+                            <a class="btn btn-secondary" href="{{ url("article/".$d->id) }}" role="button">Подробнее</a>
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
 
                 <div class="col-4 offset-1">
                     <div class="jumbotron">
-                        <h4>Best articles:</h4>
+                        <h4>Популярные статьи:</h4>
                         <hr>
                         <ul class="list-group list-group-flush">
                             @foreach($bestArticles as $b)
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="jumbotron">
-                        <h4>Archive:</h4>
+                        <h4>Архив:</h4>
                         <hr>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -76,10 +76,10 @@
             <div class="container">
                 <div class="row">
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/about_us') }}">ABOUT US</a>
+                        <a id="my_nav_text" href="{{ url('/about_us') }}">О НАС</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}>TERMS OF USE</a>
+                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
                     </div>
                 </div>
             </div>
