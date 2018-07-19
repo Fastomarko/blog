@@ -23,6 +23,11 @@ class article extends Model
         return $this->HasMany(comment::class);
     }
 
+    public function photo()
+    {
+        return $this->HasMany(photo::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(category::class);

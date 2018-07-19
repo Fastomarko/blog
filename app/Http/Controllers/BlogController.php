@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\category;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image as ImageInt;
 
 use Illuminate\Http\Request;
 use App\Article;
 use App\Like;
 use App\Comment;
+use App\Photo;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $data=article::with('category')->paginate(5);
+        $data=article::with('category')->with('photo')->paginate(5);
+        //$photo=photo::where('photo_order', 0)->with('article')->get();
         $bestArticles=$this->best_articles();
         return view('blogs.index', compact('data', 'bestArticles'));
     }
@@ -27,7 +30,7 @@ class BlogController extends Controller
 
     public function article($id)
     {
-        $article = Article::with('category')->with('user')->where('id', $id)->get();
+        $article = Article::with('category')->with('user')->with('photo')->where('id', $id)->get();
         $comment = Comment::with('user')->where('article_id', $id)->get();
         $bestArticles = $this->best_articles();
 
@@ -42,7 +45,6 @@ class BlogController extends Controller
         $article_id = url()->previous();
         $article_id = str_after($article_id, '/article/');
         $comment_text = $data->input('comment_text');
-
         $data = array('article_id'=>$article_id, 'user_id'=>$user_id, 'comment_text'=>$comment_text, 'created_at'=>date('Y-m-d H:i:s'), 'updated_at'=>date('Y-m-d H:i:s'));
         DB::table('comments')->insert($data);
 
@@ -51,15 +53,39 @@ class BlogController extends Controller
 
     public function insert_article(Request $data)
     {
-        $user_id = auth()->user()->id;
         $category_id = $data->category;
-        $article_name = $data->article_name;
-        $article_body = $data->article_body;
+        if($category_id!="no")
+        {
+            $user_id = auth()->user()->id;
+            $article_name = $data->article_name;
+            $article_body = $data->article_body;
 
-        $data = array('category_id'=>$category_id, 'article_name'=>$article_name, 'user_id'=>$user_id, 'article_body'=>$article_body, 'created_at'=>date('Y-m-d H:i:s'), 'updated_at'=>date('Y-m-d H:i:s'));
-        DB::table('articles')->insert($data);
+            $insert = array('category_id'=>$category_id, 'article_name'=>$article_name, 'user_id'=>$user_id, 'article_body'=>$article_body, 'created_at'=>date('Y-m-d H:i:s'), 'updated_at'=>date('Y-m-d H:i:s'));
+            $id=DB::table('articles')->insertGetId($insert);//добавляем запись, и сразу получаем её id для добавления фото
 
-        return redirect('home');
+            if(($data->file())==null)
+            {
+                //если фото не добавили, то будет присвоена заглушка
+                $photo = array('article_id' => $id, 'photo_link' => "no_photo.jpg", 'photo_order' => 0, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s'));
+                DB::table('photos')->insert($photo);
+            }
+            else {
+                //добавление фото//если фото есть
+                $path = public_path() . '\img\\';
+                $file = $data->file('file');
+                $i = 0;//счетчик фото, для поля order
+                foreach ($file as $f) {
+                    $filename = str_random(20) . '.' . $f->getClientOriginalExtension() ?: 'png';
+                    $img = ImageInt::make($f);
+                    $img->resize(200, 200)->save($path . $filename);
+                    $photo = array('article_id' => $id, 'photo_link' => $filename, 'photo_order' => $i, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s'));
+                    DB::table('photos')->insert($photo);
+                    $i++;
+                }
+            }
+            //добавление фото
+            return redirect('home');
+        }//дописать else
     }
 
 
@@ -107,12 +133,15 @@ class BlogController extends Controller
     public function update_article(Request $data, $id)
     {
         $category_id = $data->category;
-        $article_name = $data->article_name;
-        $article_body = $data->article_body;
+        if ($category_id!="no")
+        {
+            $article_name = $data->article_name;
+            $article_body = $data->article_body;
 
-        $data = array('category_id'=>$category_id, 'article_name'=>$article_name, 'article_body'=>$article_body, 'updated_at'=>date('Y-m-d H:i:s'));
-        DB::table('articles')->where('id', $id)->update($data);
-        return redirect('article/'.$id);
+            $data = array('category_id'=>$category_id, 'article_name'=>$article_name, 'article_body'=>$article_body, 'updated_at'=>date('Y-m-d H:i:s'));
+            DB::table('articles')->where('id', $id)->update($data);
+            return redirect('article/'.$id);
+        }//дописать else
     }
 
     public function delete_article($id)
@@ -127,5 +156,15 @@ class BlogController extends Controller
         //dd($article);
         $category = category::all();
         return view('blogs.update_article', compact('category', 'article'));
+    }
+
+    public function about_us()
+    {
+        return view('blogs.about_us');
+    }
+
+    public function terms_of_use()
+    {
+        return view('blogs.terms_of_use');
     }
 }

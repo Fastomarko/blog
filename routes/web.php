@@ -19,6 +19,8 @@ Route::get('/article/insert', 'BlogController@article_insert_page');//перев
 Route::get('/article/{article}/update', 'BlogController@article_update_page');//переводит на форму изменения
 Route::get('/article/{article}/delete', 'BlogController@delete_article');//удаляет статью
 
+Route::get('/about_us', 'BlogController@about_us');
+Route::get('/terms_of_use', 'BlogController@terms_of_use');
 
 Route::get('article/{article}', 'BlogController@article');
 

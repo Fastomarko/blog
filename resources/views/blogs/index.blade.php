@@ -15,7 +15,7 @@
 
                     <div class="row">
                         <div id="middlecol" class="col-4">
-                            <img src="..." class="rounded float-left" alt="Picture">
+                            <img src="{{asset("img/".$d->photo[0]->photo_link)}}" class="rounded float-left" alt="Picture">
                         </div>
                         <div id="middlecol" class="col-8">
                             <a href="{{ url("article/".$d->id) }}"><h3>{{$d->article_name}}</h3></a>
@@ -49,19 +49,19 @@
                         <hr>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">Date 1</a>
+                                <a id="my_nav_text" href="#">2018</a>
                             </li>
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">Date 2</a>
+                                <a id="my_nav_text" href="#">2017</a>
                             </li>
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">Date 3</a>
+                                <a id="my_nav_text" href="#">2016</a>
                             </li>
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">Date 4</a>
+                                <a id="my_nav_text" href="#">2015</a>
                             </li>
                             <li class="list-group-item">
-                                <a id="my_nav_text" href="#">Date 5</a>
+                                <a id="my_nav_text" href="#">2014</a>
                             </li>
                         </ul>
                     </div>
@@ -76,13 +76,10 @@
             <div class="container">
                 <div class="row">
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="#">ABOUT US</a>
+                        <a id="my_nav_text" href="{{ url('/about_us') }}">ABOUT US</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="#">STATISTIC</a>
-                    </div>
-                    <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="#">TERMS OF USE</a>
+                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}>TERMS OF USE</a>
                     </div>
                 </div>
             </div>
