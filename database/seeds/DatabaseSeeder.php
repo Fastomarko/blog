@@ -15,25 +15,25 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         DB::table('categories')->insert(
             [
-                'category' => 'LIFE STYLE',
+                'category' => 'СТИЛЬ ЖИЗНИ',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
         );
         DB::table('categories')->insert(
         [
-            'category' => 'NATURE',
+            'category' => 'ПРИРОДА',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         DB::table('categories')->insert([
-                'category' => 'SCIENCE AND TECHNOLOGY',
+                'category' => 'НАУКА И ТЕХНОЛОГИИ',
                 'created_at' => now(),
                 'updated_at' => now(),
         ]);
         DB::table('categories')->insert([
-                'category' => 'SPORTS',
+                'category' => 'СПОРТ',
                 'created_at' => now(),
                 'updated_at' => now(),
         ]);

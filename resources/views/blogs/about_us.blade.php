@@ -56,10 +56,10 @@
             <div class="container">
                 <div class="row">
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/about_us') }}">ABOUT US</a>
+                        <a id="my_nav_text" href="{{ url('/about_us') }}">О НАС</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">TERMS OF USE</a>
+                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
                     </div>
                 </div>
             </div>

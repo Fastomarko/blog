@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <h1><img src=""><br>Privacy Policy</h1>
+                        <h1><img src=""><br>Политика безопасности</h1>
                         <p>
                             Уединение наших посетителей чрезвычайно важно для нас. В этом документе описываются наши правила конфиденциальности, на которые вы соглашаетесь, проводя навигацию по этому сайту. Регулярные обновления политики конфиденциальности завершены, требуя от вас время от времени проверять эту политику.<br><br>
 
@@ -54,10 +54,10 @@
             <div class="container">
                 <div class="row">
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/about_us') }}">ABOUT US</a>
+                        <a id="my_nav_text" href="{{ url('/about_us') }}">О НАС</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">TERMS OF USE</a>
+                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">ПРАВИЛА ПОЛЬЗОВАНИЯ</a>
                     </div>
                 </div>
             </div>
