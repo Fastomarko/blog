@@ -10,20 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('article/insert_comment', 'BlogController@insert_comment');
-Route::post('article/insert_like', 'BlogController@insert_like');
-Route::post('article/insert_article', 'BlogController@insert_article');//само добавление
-Route::post('article/{article}/update_article', 'BlogController@update_article');
-Route::get('/', 'BlogController@index');
-Route::get('/article/insert', 'BlogController@article_insert_page');//переводит на форму добавления
-Route::get('/article/{article}/update', 'BlogController@article_update_page');//переводит на форму изменения
-Route::get('/article/{article}/delete', 'BlogController@delete_article');//удаляет статью
-
-Route::get('/about_us', 'BlogController@about_us');
-Route::get('/terms_of_use', 'BlogController@terms_of_use');
-
-Route::get('article/{article}', 'BlogController@article');
+Route::post('article/{article}/insert_comment', 'BlogController@insert_comment')->middleware('auth');
+Route::post('article/{article}/insert_like', 'BlogController@insert_like')->middleware('auth');
+Route::resource('article', 'ArticleController');//middleware нужен, но не для всех
 
 Auth::routes();
-
+Route::get('/', 'BlogController@index');
+//убери один из них
 Route::get('/home', 'BlogController@index');
+Route::get('/about_us', 'BlogController@about_us');
+Route::get('/terms_of_use', 'BlogController@terms_of_use');

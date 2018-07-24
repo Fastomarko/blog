@@ -13,19 +13,19 @@
 
                     <div class="row">
                         <div id="middlecol" class="col-4">
-                            <img src="{{asset("img/".$article[0]->photo[0]->photo_link)}}" class="rounded float-left" alt="Picture">
+                            <img src="{{asset("img/".$article->photo[0]->photo_link)}}" class="rounded float-left" alt="Picture">
                         </div>
                         <div id="middlecol" class="col-8">
-                            <a href="#"><h3>{{$article[0]->article_name}}</h3></a>
-                            <a href="#">{{$article[0]->category->category}}</a>
-                            <p>{{$article[0]->article_body}}</p>
+                            <a href="#"><h3>{{$article->article_name}}</h3></a>
+                            <a href="#">{{$article->category->category}}</a>
+                            <p>{!! $article->article_body !!}</p>
                         </div>
                     </div>
 
                     <hr>
                     <div class="row">
                         <div class="col">
-                            <form action="insert_like" method="post">
+                            <form action="{{ url("article/".$article->id."/insert_like") }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="container">
                                     <button type="submit" name="submit" class="btn btn-primary">
@@ -34,21 +34,27 @@
                                 </div>
                             </form>
                         </div>
-                        @if ((auth()->user()->id)==$article[0]->user_id)
+                        @if(auth()->user()!=null)
+                            @if ((auth()->user()->id)==$article->user_id)
                         <div class="col">
-                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/update") }}" role="button">Update</a>
+                            <a class="btn btn-secondary" href="{{ url("article/".$article->id."/edit") }}" role="button">Update</a>
                         </div>
 
                         <div class="col">
-                            <a class="btn btn-secondary" href="{{ url("article/".$article[0]->id."/delete") }}" role="button">Delete</a>
+                            <form action="{{url('article/'.$article->id)}}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type="submit" name="submit" class="btn btn-secondary" value="Delete"/>
+                            </form>
                         </div>
+                            @endif
                         @endif
                     </div>
                     <hr>
 
                     <!--Добавление комментариев-->
                     @if (Auth::check())
-                    <form action="insert_comment" method="post">
+                    <form action="{{ url("article/".$article->id."/insert_comment") }}" method="post">
                         {{ csrf_field() }}
                         <div class="container">
                             <p>Add a comment:</p>

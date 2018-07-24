@@ -28,6 +28,7 @@ class article extends Model
         return $this->HasMany(photo::class);
     }
 
+
     public function category()
     {
         return $this->belongsTo(category::class);

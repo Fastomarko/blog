@@ -20,7 +20,7 @@
                         <div id="middlecol" class="col-8">
                             <a href="{{ url("article/".$d->id) }}"><h3>{{$d->article_name}}</h3></a>
                             <a href="#">{{$d->category->category}}</a>
-                            <p>{{str_limit($d->article_body, 200)}}</p>
+                            <p>{!! str_limit($d->article_body, 200) !!}</p>
                             <a class="btn btn-secondary" href="{{ url("article/".$d->id) }}" role="button">Learn more</a>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         <a id="my_nav_text" href="{{ url('/about_us') }}">ABOUT US</a>
                     </div>
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}>TERMS OF USE</a>
+                        <a id="my_nav_text" href="{{ url('/terms_of_use') }}">TERMS OF USE</a>
                     </div>
                 </div>
             </div>

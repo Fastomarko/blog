@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div id="my_nav_col" class="col">
-                        <a id="my_nav_text" href="{{ url('/') }}">HOME</a>
+                        <a id="my_nav_text" href="{{ url('/home') }}">HOME</a>
                     </div>
 
                     <div id="my_nav_col" class="col">
@@ -41,7 +41,7 @@
                         </div>
                     @else
                         <div id="my_nav_col" class="col offset-6">
-                            <a id="my_nav_text" href="{{ URL('article/insert') }}">INSERT ARTICLE</a>
+                            <a id="my_nav_text" href="{{ URL('article/create') }}">INSERT ARTICLE</a>
                         </div>
                         <div id="my_nav_col" class="col">
                             <a id="my_nav_text" class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

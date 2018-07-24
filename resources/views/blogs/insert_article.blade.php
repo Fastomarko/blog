@@ -2,7 +2,7 @@
 
 @section('content')
     <content>
-        <form action="insert_article" method="post" enctype="multipart/form-data">
+        <form action="{{url('article')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="container">
                 <select class="custom-select form-control" name="category">
