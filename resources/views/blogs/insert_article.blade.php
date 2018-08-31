@@ -5,8 +5,8 @@
         <form action="{{url('article')}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="container">
+                <label>Выберите категорию:</label>
                 <select class="custom-select form-control" name="category">
-                    <option selected value="no">КАТЕГОРИИ</option>
                     @foreach($category as $c)
                     <option value="{{$c->id}}">{{$c->category}}</OPTION>
                         @endforeach
@@ -26,4 +26,18 @@
             </div>
         </form>
     </content>
+
+    <br>
+
+    <div class="container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    </div>
 @endsection

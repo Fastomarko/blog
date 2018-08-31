@@ -6,11 +6,15 @@
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="container">
+                <label>Выберите категорию:</label>
                 <select class="custom-select form-control" name="category">
-                    <option selected value="no">КАТЕГОРИИ</option>
                     @foreach($category as $c)
-                    <option value="{{$c->id}}">{{$c->category}}</OPTION>
-                        @endforeach
+                        @if(($c->id)==($article->category_id))
+                        <option selected value="{{$c->id}}">{{$c->category}}</OPTION>
+                        @else
+                        <option value="{{$c->id}}">{{$c->category}}</OPTION>
+                        @endif
+                    @endforeach
                 </select>
                 <br>
                 <br>
@@ -22,4 +26,18 @@
             </div>
         </form>
     </content>
+
+    <br>
+
+    <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 @endsection

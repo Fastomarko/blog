@@ -20,3 +20,4 @@ Route::get('/', 'BlogController@index');
 Route::get('/home', 'BlogController@index');
 Route::get('/about_us', 'BlogController@about_us');
 Route::get('/terms_of_use', 'BlogController@terms_of_use');
+Route::get('/categories/{category}', 'BlogController@categories');//сотрировка по категориям в nav-баре
